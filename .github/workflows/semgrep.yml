@@ -12,12 +12,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run Semgrep via action
-        uses: returntocorp/semgrep-action@v1
-        with:
-          config: auto
-          output: txt
-          options: --timeout=600
+      - name: Install Semgrep
+        run: python -m pip install semgrep
+
+      - name: Run Semgrep and save as TXT
+        run: |
+          semgrep --config=auto > semgrep-results.txt
 
       - name: Upload TXT report as artifact
         uses: actions/upload-artifact@v4
