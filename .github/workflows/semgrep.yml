@@ -17,11 +17,11 @@ jobs:
 
       - name: Run Semgrep and save as TXT
         run: |
-          semgrep --config=p/owasp-top-ten --json > semgrep-owasp.json
+          semgrep --config=p/owasp-top-ten > semgrep-owasp.txt
 
       - name: Upload TXT report as artifact
         uses: actions/upload-artifact@v4
         with:
           name: semgrep-report
-          path: semgrep-owasp.json
+          path: semgrep-owasp.txt
           retention-days: 7
