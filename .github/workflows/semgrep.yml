@@ -17,7 +17,7 @@ jobs:
 
       - name: Run Semgrep and save as TXT
         run: |
-          semgrep --config=p/owasp-top-ten ./src --json > semgrep-owasp.json
+          semgrep --config=p/owasp-top-ten --json > semgrep-owasp.json
 
       - name: Upload TXT report as artifact
         uses: actions/upload-artifact@v4
