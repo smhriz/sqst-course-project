@@ -1,0 +1,24 @@
+name: Semgrep TXT Report
+
+
+on: [push, pull_request]
+
+jobs:
+  semgrep-scan:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep and save as TXT
+        run: |
+          semgrep --config=auto > semgrep-results.txt
+
+      - name: Upload TXT report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: semgrep-report
+          path: semgrep-results.txt
+          retention-days: 7
